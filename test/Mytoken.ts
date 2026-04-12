@@ -55,6 +55,9 @@ describe("mytoken deploy", () => {
 
     // 1. approve
     await myTokenC.connect(signer0).approve(signer1.address, amount);
+    expect(await myTokenC.allowance(signer0.address, signer1.address)).equal(
+      amount,
+    );
 
     // 2. transferFrom (signer1이 실행, signer0 >(0.5MT)> signer1)
     await myTokenC
@@ -65,6 +68,9 @@ describe("mytoken deploy", () => {
     expect(await myTokenC.balanceOf(signer1.address)).equal(amount);
     expect(await myTokenC.balanceOf(signer0.address)).equal(
       1n * 10n ** 18n - amount,
+    );
+    expect(await myTokenC.allowance(signer0.address, signer1.address)).equal(
+      0n,
     );
     console.log(
       `signer0 balance: ${await myTokenC.balanceOf(signer0.address)}`,
