@@ -1,14 +1,16 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.28;
 
-contract ManagedAccess {
+abstract contract ManagedAccess {
     address public owner;
+    address public manager;
     address[] private managers;
     mapping(address => bool) public isManager;
     mapping(address => bool) public confirmed;
 
     constructor(address _owner, address _manager) {
         owner = _owner;
+        manager = _manager;
         _addManager(_manager);
     }
 
