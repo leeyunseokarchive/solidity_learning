@@ -72,11 +72,5 @@ describe("mytoken deploy", () => {
     expect(await myTokenC.allowance(signer0.address, signer1.address)).equal(
       0n,
     );
-    console.log(
-      `signer0 balance: ${await myTokenC.balanceOf(signer0.address)}`,
-    );
-    console.log(
-      `signer1 balance: ${await myTokenC.balanceOf(signer1.address)}`,
-    );
   });
 });
